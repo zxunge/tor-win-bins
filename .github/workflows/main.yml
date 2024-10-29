@@ -24,7 +24,7 @@ jobs:
         run: |
           mkdir file
           cd file/
-          wget -q https://archive.org/download/tiny-10_202301/tiny10%20x64%20beta%202.iso
+          wget -q https://archive.org/download/tiny-10_202301/tiny10%2023h1%20x64.iso
 
       - name: upload
         id: upload
