@@ -3,9 +3,9 @@
 set -eux
 
 HOME=$(cygpath -m /home)
-NAME="tiny10 2303 x86.iso"
+NAME="tiny10 x64 beta 2.iso"
 cd /home
-wget -q https://archive.org/download/tiny-10_202301/tiny10%202303%20x86.iso
+wget -q https://archive.org/download/tiny-10_202301/tiny10%20x64%20beta%202.iso
 
 if [[ -v GITHUB_WORKFLOW ]]; then
   echo "OUTPUT_BINARY='${HOME}/${NAME}'" >> $GITHUB_OUTPUT
