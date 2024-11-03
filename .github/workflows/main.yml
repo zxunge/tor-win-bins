@@ -22,13 +22,23 @@ jobs:
         shell: msys2 {0}
         id: build
         run: |
+          NAME=tiny11-24h2
           mkdir file
           cd file/
-          wget -q https://archive.org/download/tiny-11-NTDEV/tiny11%20b1.iso
+          wget -q https://archive.org/download/tiny11-2409/tiny11%2024H2%20AMD64.iso
+          
+          if [[ -v GITHUB_WORKFLOW ]]; then
+            echo "RELEASE_NAME=${NAME}" >> $GITHUB_OUTPUT
+            echo "RELEASE_TAG=${NAME}" >> $GITHUB_OUTPUT
+          fi
 
-      - name: upload
-        id: upload
-        uses: actions/upload-artifact@v4
+      - name: Publish release
+        uses: ncipollo/release-action@v1
         with:
-          name: Tor
-          path: file
+          allowUpdates: true
+          tag: ${{ steps.build.outputs.RELEASE_TAG }}
+          name: ${{ steps.build.outputs.RELEASE_NAME }}
+          artifacts: ${{ github.workspace }}/file/*.iso
+          body: |
+            This is ${{ steps.build.outputs.RELEASE_NAME }}.
+          token: ${{ secrets.GITHUB_TOKEN }}
