@@ -32,13 +32,20 @@ jobs:
             echo "RELEASE_TAG=${NAME}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Publish release
-        uses: ncipollo/release-action@v1
+      - name: upload
+        id: upload
+        uses: actions/upload-artifact@v4
         with:
-          allowUpdates: true
-          tag: ${{ steps.build.outputs.RELEASE_TAG }}
-          name: ${{ steps.build.outputs.RELEASE_NAME }}
-          artifacts: ${{ github.workspace }}/file/*.iso
-          body: |
-            This is ${{ steps.build.outputs.RELEASE_NAME }}.
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Tor
+          path: file
+      
+      #- name: Publish release
+     #   uses: ncipollo/release-action@v1
+     #   with:
+     #     allowUpdates: true
+      #    tag: ${{ steps.build.outputs.RELEASE_TAG }}
+     #     name: ${{ steps.build.outputs.RELEASE_NAME }}
+     #     artifacts: ${{ github.workspace }}/file/*.iso
+      #    body: |
+      #      This is ${{ steps.build.outputs.RELEASE_NAME }}.
+       #   token: ${{ secrets.GITHUB_TOKEN }}
