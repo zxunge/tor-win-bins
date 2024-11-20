@@ -27,10 +27,10 @@ jobs:
           cd file/
           wget -q https://archive.org/download/tiny11-2409/tiny11%2024H2%20AMD64.iso
           
-          if [[ -v GITHUB_WORKFLOW ]]; then
-            echo "RELEASE_NAME=${NAME}" >> $GITHUB_OUTPUT
-            echo "RELEASE_TAG=${NAME}" >> $GITHUB_OUTPUT
-          fi
+         # if [[ -v GITHUB_WORKFLOW ]]; then
+          #  echo "RELEASE_NAME=${NAME}" >> $GITHUB_OUTPUT
+          #  echo "RELEASE_TAG=${NAME}" >> $GITHUB_OUTPUT
+         # fi
 
       - name: upload
         id: upload
