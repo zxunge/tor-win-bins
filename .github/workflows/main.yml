@@ -22,10 +22,10 @@ jobs:
         shell: msys2 {0}
         id: build
         run: |
-          NAME=tiny11-24h2
+          
           mkdir file
           cd file/
-          wget -q https://archive.org/download/tiny11-2409/tiny11%2024H2%20AMD64.iso
+          wget -q https://dist.torproject.org/torbrowser/14.0.4/tor-browser-android-armv7-14.0.4.apk
           
          # if [[ -v GITHUB_WORKFLOW ]]; then
           #  echo "RELEASE_NAME=${NAME}" >> $GITHUB_OUTPUT
