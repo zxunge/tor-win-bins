@@ -16,31 +16,21 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: download
-        id: build
+        id: dload
         run: |
-          mkdir file
-          cd file/
-          wget -q https://dist.torproject.org/torbrowser/14.0.4/tor-browser-android-armv7-14.0.4.apk
+          NAME=tor-browser-android-aarch64-14.0.7.apk
+          TAG=14.0.7
           
-         # if [[ -v GITHUB_WORKFLOW ]]; then
-          #  echo "RELEASE_NAME=${NAME}" >> $GITHUB_OUTPUT
-          #  echo "RELEASE_TAG=${NAME}" >> $GITHUB_OUTPUT
-         # fi
+          wget -q https://dist.torproject.org/torbrowser/14.0.7/tor-browser-android-aarch64-14.0.7.apk
+          
+          if [[ -v GITHUB_WORKFLOW ]]; then
+            echo "RELEASE_NAME=${NAME}" >> $GITHUB_OUTPUT
+            echo "RELEASE_TAG=${TAG}" >> $GITHUB_OUTPUT
+          fi
 
       - name: upload
         id: upload
         uses: actions/upload-artifact@v4
         with:
           name: Tor
-          path: file
-      
-      #- name: Publish release
-     #   uses: ncipollo/release-action@v1
-     #   with:
-     #     allowUpdates: true
-      #    tag: ${{ steps.build.outputs.RELEASE_TAG }}
-     #     name: ${{ steps.build.outputs.RELEASE_NAME }}
-     #     artifacts: ${{ github.workspace }}/file/*.iso
-      #    body: |
-      #      This is ${{ steps.build.outputs.RELEASE_NAME }}.
-       #   token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ steps.dload.outputs.RELEASE_NAME }}
