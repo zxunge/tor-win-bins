@@ -10,10 +10,10 @@ jobs:
       - name: download
         id: dload
         run: |
-          NAME=firefox-138.0b5.source.tar.xz
-          TAG=138.0b5
+          NAME=firefox-128.9.0esr.source.tar.xz
+          TAG=128.9.0esr
           
-          wget -q https://ftp.mozilla.org/pub/firefox/releases/138.0b5/source/firefox-138.0b5.source.tar.xz
+          wget -q https://ftp.mozilla.org/pub/firefox/releases/128.9.0esr/source/firefox-128.9.0esr.source.tar.xz
           
           if [[ -v GITHUB_WORKFLOW ]]; then
             echo "RELEASE_NAME=${NAME}" >> $GITHUB_OUTPUT
@@ -24,5 +24,5 @@ jobs:
         id: upload
         uses: actions/upload-artifact@v4
         with:
-          name: Tor
+          name: ${{ steps.dload.outputs.RELEASE_NAME }}
           path: ${{ steps.dload.outputs.RELEASE_NAME }}
