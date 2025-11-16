@@ -10,10 +10,10 @@ jobs:
       - name: download
         id: dload
         run: |
-          NAME=tor-browser-linux-x86_64-14.5.3.tar.xz
+          NAME=tor-browser-windows-x86_64-portable-15.0.1.exe
           TAG=128.9.0esr
           
-          wget -q https://dist.torproject.org/torbrowser/14.5.3/tor-browser-linux-x86_64-14.5.3.tar.xz
+          wget -q https://mirrors.mit.edu/dist/torbrowser/15.0.1/tor-browser-windows-x86_64-portable-15.0.1.exe
           
           if [[ -v GITHUB_WORKFLOW ]]; then
             echo "RELEASE_NAME=${NAME}" >> $GITHUB_OUTPUT
